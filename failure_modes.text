@@ -1,3 +1,9 @@
+FAILURE MODES-
+
+in this following guide I explain the expected failures and how I would handle
+them if this was a real-world project.
+
+
 1. Machine Failure:
 Failure Mode:
 One or more machines in the system go offline or become non-responsive.
