@@ -201,5 +201,7 @@ curl -X POST "http://${PUBLIC_IP_2}:5000/addSibling?endpoint=${PUBLIC_IP_1}:5000
 echo "Finished setup script..." 
 
 echo "dynamic_workload is up-"
+
 echo "PUBLIC_IP_1: $PUBLIC_IP_1"
+
 echo "PUBLIC_IP_2: $PUBLIC_IP_2"
