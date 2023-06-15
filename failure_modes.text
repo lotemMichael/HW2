@@ -1,0 +1,37 @@
+1. Machine Failure:
+Failure Mode:
+One or more machines in the system go offline or become non-responsive.
+Handling: 
+Implement redundancy by using multiple machines and load balancing techniques
+to distribute the workload. Set up monitoring systems to detect machine failures quickly 
+and automatically redirect traffic to healthy machines. Maintain a backup of critical data
+and regularly test the restoration process.
+
+2. Network Split:
+Failure Mode: 
+Network connectivity is lost between different components or locations of the system.
+Handling: 
+Design the system to be resilient to network splits by utilizing distributed 
+systems and replication techniques. Implement mechanisms like heartbeats and timeouts 
+to detect network failures and initiate failover or fallback procedures. Use techniques 
+such as sharding or partitioning to ensure that network splits do not affect the entire 
+system.
+
+3.Data Corruption:
+Failure Mode: 
+Data stored in the system becomes corrupted or unreadable.
+Handling: 
+Implement data integrity checks, such as checksums or hash functions, to verify data 
+integrity during storage and retrieval. Regularly perform backups and implement versioning 
+or snapshot mechanisms to restore data to a previous known-good state. 
+Use error-detection and error-correction codes where appropriate.
+
+4.Security Breach:
+Failure Mode: 
+Unauthorized access, data breaches, or compromised system security.
+Handling: 
+Employ strong security measures, such as authentication, encryption, and access controls,
+to protect the system. Regularly update and patch software and infrastructure components 
+to address vulnerabilities. Monitor system logs and implement intrusion detection systems 
+to detect and respond to security incidents promptly. Have incident response plans in 
+place to minimize damage and recover from security breaches.
