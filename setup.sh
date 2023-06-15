@@ -143,6 +143,9 @@ ssh -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=10" ubuntu@
     # Install pip (Python package manager)
     sudo apt-get install -y python3-pip
 
+    # Install jq
+    #sudo apt-get install jq
+
     # Install AWS CLI
     pip3 install --upgrade awscli --user
 
@@ -175,6 +178,9 @@ ssh -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=10" ubuntu@
 
     # Install pip (Python package manager)
     sudo apt-get install -y python3-pip
+
+    # Install jq
+    #sudo apt-get install jq
 
     # Install AWS CLI
     pip3 install --upgrade awscli --user

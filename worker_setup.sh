@@ -7,9 +7,9 @@ set -e
 
 aws configure set region us-east-1
 
-KEY_NAME="Worker_Key"
+KEY_NAME="Worker_Key_$(date +'%N')"
 KEY_PEM="$KEY_NAME.pem"
-SEC_GRP="Worker_Security_Group"
+SEC_GRP="Worker_Security_Group_$(date +'%N')"
 
 UBUNTU_22_04_AMI="ami-01dd271720c1ba44f"
 
