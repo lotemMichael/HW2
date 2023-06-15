@@ -58,7 +58,6 @@ aws iam attach-role-policy \
     --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess
 
 echo "IAM role $IAM_ROLE_NAME created with policy $IAM_POLICY_NAME"
-echo "IAM role ARN: $IAM_ROLE_ARN"
 
 # Create the IAM instance profile
 aws iam create-instance-profile --instance-profile-name MyInstanceProfile
@@ -68,8 +67,8 @@ aws iam create-instance-profile --instance-profile-name MyInstanceProfile
 
 # Wait for the instance profile to become available
 echo "waiting for the instance profile to become availble"
-# aws iam wait instance-profile-exists --instance-profile-name $INSTANCE_PROFILE_NAME
-sleep 3
+aws iam wait instance-profile-exists --instance-profile-name $INSTANCE_PROFILE_NAME
+sleep 5
 
 # Remove the "role/" prefix from the ARN to form the instance profile ARN
 INSTANCE_PROFILE_ARN=$(aws iam get-instance-profile --instance-profile-name "$INSTANCE_PROFILE_NAME" --query "InstanceProfile.Arn" --output text)
@@ -120,11 +119,11 @@ echo "New instance $INSTANCE_ID_2 @ $PUBLIC_IP_2"
 
 # TODO: Deploy code to the first instance
 echo "Deploying code to the first instance"
-scp -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=60" endpoint.py worker.py ubuntu@$PUBLIC_IP_1:/home/ubuntu/
+scp -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=60" endpoint.py worker_setup.sh worker.py ubuntu@$PUBLIC_IP_1:/home/ubuntu/
 
 # TODO: Deploy code to the second instance
 echo "Deploying code to the second instance"
-scp -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=60" endpoint.py worker.py ubuntu@$PUBLIC_IP_2:/home/ubuntu/
+scp -i $KEY_PEM -o "StrictHostKeyChecking=no" -o "ConnectionAttempts=60" endpoint.py worker_setup.sh worker.py ubuntu@$PUBLIC_IP_2:/home/ubuntu/
 
 # Connect to the first instance and execute commands
 echo "Setting up the first instance"
@@ -194,9 +193,11 @@ EOF
 
 echo "Adding sibling to endpoint num1:"
 curl -X POST "http://${PUBLIC_IP_1}:5000/addSibling?endpoint=${PUBLIC_IP_2}:5000"
+printf "\n"
 
 echo "Adding sibling to endpoint num2:"
 curl -X POST "http://${PUBLIC_IP_2}:5000/addSibling?endpoint=${PUBLIC_IP_1}:5000"
+printf "\n"
 
 echo "Finished setup script..." 
 
